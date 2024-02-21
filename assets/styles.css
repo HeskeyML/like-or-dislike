@@ -35,7 +35,7 @@ button:hover {
 /* Image styles */
 img {
     display: block;
-    margin: auto; /* Center horizontally */
+    margin: 0 auto; /* Center horizontally */
     width: 250px; /* Set a fixed width */
     height: auto; /* Maintain aspect ratio */
     max-width: 100%; /* Ensure image doesn't exceed container width */
