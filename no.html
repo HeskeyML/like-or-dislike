@@ -16,9 +16,12 @@
     <div id="noList"></div>
 
     <script>
-        // Retrieve and display words user clicked 'No' for
+        // Retrieve and display unique words user clicked 'No' for
         var noList = JSON.parse(localStorage.getItem('noList'));
         if (noList) {
+            // Convert to Set to remove duplicates, then back to array
+            noList = [...new Set(noList)];
+            
             var noListHtml = '';
             noList.forEach(function(imagePath) {
                 noListHtml += '<img src="' + imagePath + '" alt="Word Image">';
