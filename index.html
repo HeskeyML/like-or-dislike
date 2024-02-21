@@ -84,19 +84,6 @@
             return 'assets/words/' + randomFileName;
         }
 
-        // Array of word images
-        const wordImages = [
-            'Tom Hanks.jpeg',
-            'Matt Damon.jpeg',
-            // Add more image file names here as needed
-        ];
-
-        // Function to randomly select an image
-        function getRandomImage() {
-            const randomIndex = Math.floor(Math.random() * wordImages.length);
-            return 'assets/words/' + wordImages[randomIndex];
-        }
-
         // Set the source of the image element to a random image
         document.getElementById('wordImage').src = getRandomImage();
     </script>
