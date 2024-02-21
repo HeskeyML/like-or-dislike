@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Game</title>
+    <title>Landing Page</title>
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -13,14 +13,30 @@
         <a href="no.html">No</a>
     </nav>
     <h1>Word of the Day</h1>
-    <img src="assets/words/word1.jpg" alt="Word Image">
+    <img id="wordImage" alt="Word Image">
     <button onclick="saveResponse('yes')">Yes</button>
     <button onclick="saveResponse('no')">No</button>
 
     <script>
         function saveResponse(response) {
-            localStorage.setItem('response', response);
+            // Save response locally
+            // You can use localStorage or any other client-side storage mechanism
         }
+
+        // Array of word images
+        const wordImages = [
+            'Tom Hanks.jpg',
+            // Add more image file names here as needed
+        ];
+
+        // Function to randomly select an image
+        function getRandomImage() {
+            const randomIndex = Math.floor(Math.random() * wordImages.length);
+            return 'assets/words/' + wordImages[randomIndex];
+        }
+
+        // Set the source of the image element to a random image
+        document.getElementById('wordImage').src = getRandomImage();
     </script>
 </body>
 </html>
