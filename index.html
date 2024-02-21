@@ -22,15 +22,9 @@
         function saveResponseAndChangeImage(response) {
             // Save response locally
             saveResponse(response);
-
             // Change to a new random image
-            getRandomImage().then(randomImagePath => {
-                document.getElementById('wordImage').src = randomImagePath;
-            }).catch(error => {
-                console.error('Error fetching random image:', error);
-            });
+            document.getElementById('wordImage').src = getRandomImage();
         }
-
         function saveResponse(response) {
             // Get existing responses from localStorage or initialize an empty array
             let responses = JSON.parse(localStorage.getItem('responses')) || [];
@@ -40,14 +34,14 @@
         
             // Save the updated array back to localStorage
             localStorage.setItem('responses', JSON.stringify(responses));
-        
+
             // Retrieve existing yesList and noList from localStorage or initialize empty arrays
             let yesList = JSON.parse(localStorage.getItem('yesList')) || [];
             let noList = JSON.parse(localStorage.getItem('noList')) || [];
-        
+
             // Get the image path of the current image
             let imagePath = document.getElementById('wordImage').src;
-        
+
             // Remove the image path from the opposite list if it exists
             if (response === 'yes') {
                 // Add the image path to yesList
@@ -55,7 +49,7 @@
                     yesList.push(imagePath);
                     localStorage.setItem('yesList', JSON.stringify(yesList));
                 }
-        
+
                 // Remove the image path from noList if it exists
                 if (noList.includes(imagePath)) {
                     noList = noList.filter(item => item !== imagePath);
@@ -67,7 +61,7 @@
                     noList.push(imagePath);
                     localStorage.setItem('noList', JSON.stringify(noList));
                 }
-        
+
                 // Remove the image path from yesList if it exists
                 if (yesList.includes(imagePath)) {
                     yesList = yesList.filter(item => item !== imagePath);
@@ -76,22 +70,19 @@
             }
         }
 
-        // Function to fetch a random image path from the assets/names folder
+        // Array of word images
+        const wordImages = [
+            'Tom Hanks.jpeg',
+            'Matt Damon.jpeg',
+            // Add more image file names here as needed
+        ];
+        // Function to randomly select an image
         function getRandomImage() {
-            return fetch('assets/names')
-                .then(response => response.json())
-                .then(fileList => {
-                    const randomFileName = fileList[Math.floor(Math.random() * fileList.length)];
-                    return 'assets/names/' + randomFileName;
-                });
+            const randomIndex = Math.floor(Math.random() * wordImages.length);
+            return 'assets/words/' + wordImages[randomIndex];
         }
-        
         // Set the source of the image element to a random image
-        getRandomImage().then(randomImagePath => {
-            document.getElementById('wordImage').src = randomImagePath;
-        }).catch(error => {
-            console.error('Error fetching random image:', error);
-        });
+        document.getElementById('wordImage').src = getRandomImage();
     </script>
 </body>
 </html>
