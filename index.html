@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Game</title>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Landing</a> |
+        <a href="yes.html">Yes</a> |
+        <a href="no.html">No</a>
+    </nav>
+    <h1>Word of the Day</h1>
+    <img src="assets/words/word1.jpg" alt="Word Image">
+    <button onclick="saveResponse('yes')">Yes</button>
+    <button onclick="saveResponse('no')">No</button>
+
+    <script>
+        function saveResponse(response) {
+            localStorage.setItem('response', response);
+        }
+    </script>
+</body>
+</html>
