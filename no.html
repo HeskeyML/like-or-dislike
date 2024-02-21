@@ -12,14 +12,18 @@
         <a href="yes.html">Yes</a> |
         <a href="no.html">No</a>
     </nav>
-    <h1>Celebrities you dislike:</h1>
-    <ul id="noList"></ul>
+    <h1>No List</h1>
+    <div id="noList"></div>
 
     <script>
         // Retrieve and display words user clicked 'No' for
-        var noList = localStorage.getItem('noList');
+        var noList = JSON.parse(localStorage.getItem('noList'));
         if (noList) {
-            document.getElementById('noList').innerHTML = noList;
+            var noListHtml = '';
+            noList.forEach(function(imagePath) {
+                noListHtml += '<img src="' + imagePath + '" alt="Word Image">';
+            });
+            document.getElementById('noList').innerHTML = noListHtml;
         }
     </script>
 </body>
