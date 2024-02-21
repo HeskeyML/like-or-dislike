@@ -29,27 +29,39 @@
         function saveResponse(response) {
             // Get existing responses from localStorage or initialize an empty array
             let responses = JSON.parse(localStorage.getItem('responses')) || [];
-
+        
             // Add the current response to the array
             responses.push(response);
-
+        
             // Save the updated array back to localStorage
             localStorage.setItem('responses', JSON.stringify(responses));
-
-            // Get existing yesList and noList from localStorage or initialize empty arrays
-            let yesList = JSON.parse(localStorage.getItem('yesList')) || [];
-            let noList = JSON.parse(localStorage.getItem('noList')) || [];
-
+        
+            // Initialize yesList and noList
+            let yesList = [];
+            let noList = [];
+        
+            // Retrieve existing yesList and noList from localStorage if they exist
+            if (localStorage.getItem('yesList')) {
+                yesList = JSON.parse(localStorage.getItem('yesList'));
+            }
+            if (localStorage.getItem('noList')) {
+                noList = JSON.parse(localStorage.getItem('noList'));
+            }
+        
             // Add the path of the current image to the appropriate list
             if (response === 'yes') {
-                yesList.push(document.getElementById('wordImage').src);
+                let imagePath = document.getElementById('wordImage').src;
+                if (!yesList.includes(imagePath)) {
+                    yesList.push(imagePath);
+                    localStorage.setItem('yesList', JSON.stringify(yesList));
+                }
             } else {
-                noList.push(document.getElementById('wordImage').src);
+                let imagePath = document.getElementById('wordImage').src;
+                if (!noList.includes(imagePath)) {
+                    noList.push(imagePath);
+                    localStorage.setItem('noList', JSON.stringify(noList));
+                }
             }
-
-            // Save the updated lists back to localStorage
-            localStorage.setItem('yesList', JSON.stringify(yesList));
-            localStorage.setItem('noList', JSON.stringify(noList));
         }
 
         // Array of word images
