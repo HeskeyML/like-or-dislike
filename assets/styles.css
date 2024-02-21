@@ -39,5 +39,5 @@ img {
     width: 300px; /* Set a fixed width */
     height: auto; /* Maintain aspect ratio */
     max-width: 100%; /* Ensure image doesn't exceed container width */
-    max-height: 300px; /* Set a maximum height */
+    max-height: 500px; /* Set a maximum height */
 }
