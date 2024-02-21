@@ -12,14 +12,18 @@
         <a href="yes.html">Yes</a> |
         <a href="no.html">No</a>
     </nav>
-    <h1>Celebrities you like:</h1>
-    <ul id="yesList"></ul>
+    <h1>Yes List</h1>
+    <div id="yesList"></div>
 
     <script>
         // Retrieve and display words user clicked 'Yes' for
-        var yesList = localStorage.getItem('yesList');
+        var yesList = JSON.parse(localStorage.getItem('yesList'));
         if (yesList) {
-            document.getElementById('yesList').innerHTML = yesList;
+            var yesListHtml = '';
+            yesList.forEach(function(imagePath) {
+                yesListHtml += '<img src="' + imagePath + '" alt="Word Image">';
+            });
+            document.getElementById('yesList').innerHTML = yesListHtml;
         }
     </script>
 </body>
