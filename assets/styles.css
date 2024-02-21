@@ -24,7 +24,8 @@ button {
     color: white;
     border: none;
     cursor: pointer;
-    margin: 10px;
+    margin: 10px auto; /* Center horizontally */
+    display: block; /* Ensure block-level display for margin: auto to work */
 }
 
 button:hover {
@@ -34,7 +35,7 @@ button:hover {
 /* Image styles */
 img {
     display: block;
-    margin: 0 auto;
+    margin: 0 auto; /* Center horizontally */
     max-width: 100%;
     height: auto;
 }
