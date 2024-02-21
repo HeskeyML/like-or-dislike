@@ -24,7 +24,11 @@
             saveResponse(response);
 
             // Change to a new random image
-            document.getElementById('wordImage').src = getRandomImage();
+            getRandomImage().then(randomImagePath => {
+                document.getElementById('wordImage').src = randomImagePath;
+            }).catch(error => {
+                console.error('Error fetching random image:', error);
+            });
         }
 
         function saveResponse(response) {
@@ -70,6 +74,14 @@
                     localStorage.setItem('yesList', JSON.stringify(yesList));
                 }
             }
+        }
+
+        // Function to fetch a random image path from the assets/words folder
+        async function getRandomImage() {
+            const response = await fetch('assets/words');
+            const fileList = await response.json(); // Assuming that 'assets/words' returns a JSON array of filenames
+            const randomFileName = fileList[Math.floor(Math.random() * fileList.length)];
+            return 'assets/words/' + randomFileName;
         }
 
         // Array of word images
