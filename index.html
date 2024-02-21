@@ -12,19 +12,27 @@
         <a href="yes.html">Yes</a> |
         <a href="no.html">No</a>
     </nav>
-    <h1>Do you like this celebrity?</h1>
-    <button onclick="saveResponse('yes')">Yes</button>
-    <button onclick="saveResponse('no')">No</button>
+    <h1>Word of the Day</h1>
     <img id="wordImage" alt="Word Image">
+    <button onclick="saveResponseAndChangeImage('yes')">Yes</button>
+    <button onclick="saveResponseAndChangeImage('no')">No</button>
 
     <script>
+        function saveResponseAndChangeImage(response) {
+            // Save response locally
+            saveResponse(response);
+
+            // Change to a new random image
+            document.getElementById('wordImage').src = getRandomImage();
+        }
+
         function saveResponse(response) {
             // Get existing responses from localStorage or initialize an empty array
             let responses = JSON.parse(localStorage.getItem('responses')) || [];
-        
+
             // Add the current response to the array
             responses.push(response);
-        
+
             // Save the updated array back to localStorage
             localStorage.setItem('responses', JSON.stringify(responses));
         }
@@ -32,6 +40,7 @@
         // Array of word images
         const wordImages = [
             'Tom Hanks.jpeg',
+            'Matt Damon.jpeg',
             // Add more image file names here as needed
         ];
 
