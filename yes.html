@@ -15,10 +15,13 @@
     <h1>Yes List</h1>
     <div id="yesList"></div>
 
-    <script>
-        // Retrieve and display words user clicked 'Yes' for
+    <<script>
+        // Retrieve and display unique words user clicked 'Yes' for
         var yesList = JSON.parse(localStorage.getItem('yesList'));
         if (yesList) {
+            // Convert to Set to remove duplicates, then back to array
+            yesList = [...new Set(yesList)];
+            
             var yesListHtml = '';
             yesList.forEach(function(imagePath) {
                 yesListHtml += '<img src="' + imagePath + '" alt="Word Image">';
