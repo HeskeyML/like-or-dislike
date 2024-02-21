@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings Page</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Celeb Rating</a> |
+        <a href="yes.html">Liked Celebs</a> |
+        <a href="no.html">Disliked Celebs</a> |
+        <a href="settings.html">Settings</a>
+    </nav>
+    <h1>Settings</h1>
+    <button onclick="clearYesNoLists()">Clear Data</button>
+
+    <script>
+        // Function to clear only Yes and No lists in local storage
+        function clearYesNoLists() {
+            localStorage.removeItem('yesList');
+            localStorage.removeItem('noList');
+            alert('Yes and No lists cleared.');
+        }
+    </script>
+</body>
+</html>
