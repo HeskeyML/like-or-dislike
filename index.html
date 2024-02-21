@@ -37,30 +37,37 @@
             // Save the updated array back to localStorage
             localStorage.setItem('responses', JSON.stringify(responses));
         
-            // Initialize yesList and noList
-            let yesList = [];
-            let noList = [];
+            // Retrieve existing yesList and noList from localStorage or initialize empty arrays
+            let yesList = JSON.parse(localStorage.getItem('yesList')) || [];
+            let noList = JSON.parse(localStorage.getItem('noList')) || [];
         
-            // Retrieve existing yesList and noList from localStorage if they exist
-            if (localStorage.getItem('yesList')) {
-                yesList = JSON.parse(localStorage.getItem('yesList'));
-            }
-            if (localStorage.getItem('noList')) {
-                noList = JSON.parse(localStorage.getItem('noList'));
-            }
+            // Get the image path of the current image
+            let imagePath = document.getElementById('wordImage').src;
         
-            // Add the path of the current image to the appropriate list
+            // Remove the image path from the opposite list if it exists
             if (response === 'yes') {
-                let imagePath = document.getElementById('wordImage').src;
+                // Add the image path to yesList
                 if (!yesList.includes(imagePath)) {
                     yesList.push(imagePath);
                     localStorage.setItem('yesList', JSON.stringify(yesList));
                 }
+        
+                // Remove the image path from noList if it exists
+                if (noList.includes(imagePath)) {
+                    noList = noList.filter(item => item !== imagePath);
+                    localStorage.setItem('noList', JSON.stringify(noList));
+                }
             } else {
-                let imagePath = document.getElementById('wordImage').src;
+                // Add the image path to noList
                 if (!noList.includes(imagePath)) {
                     noList.push(imagePath);
                     localStorage.setItem('noList', JSON.stringify(noList));
+                }
+        
+                // Remove the image path from yesList if it exists
+                if (yesList.includes(imagePath)) {
+                    yesList = yesList.filter(item => item !== imagePath);
+                    localStorage.setItem('yesList', JSON.stringify(yesList));
                 }
             }
         }
