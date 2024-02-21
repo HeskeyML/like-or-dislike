@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yes Page</title>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Landing</a> |
+        <a href="yes.html">Yes</a> |
+        <a href="no.html">No</a>
+    </nav>
+    <h1>Words You Said Yes To</h1>
+    <ul id="yesList"></ul>
+
+    <script>
+        // Retrieve and display words user clicked 'Yes' for
+        var yesList = localStorage.getItem('yesList');
+        if (yesList) {
+            document.getElementById('yesList').innerHTML = yesList;
+        }
+    </script>
+</body>
+</html>
