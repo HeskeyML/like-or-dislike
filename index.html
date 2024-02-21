@@ -76,13 +76,16 @@
             }
         }
 
-        // Function to fetch a random image path from the assets/words folder
         async function getRandomImage() {
-            const response = await fetch('assets/words');
-            const fileList = await response.json(); // Assuming that 'assets/words' returns a JSON array of filenames
-            const randomFileName = fileList[Math.floor(Math.random() * fileList.length)];
-            return 'assets/words/' + randomFileName;
-        }
+            try {
+                const response = await fetch('assets/words');
+                const fileList = await response.json();
+                const randomFileName = fileList[Math.floor(Math.random() * fileList.length)];
+                return 'assets/words/' + randomFileName;
+            } catch (error) {
+                throw new Error('Error fetching random image: ' + error.message);
+            }
+}
 
         // Set the source of the image element to a random image
         document.getElementById('wordImage').src = getRandomImage();
