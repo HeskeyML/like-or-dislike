@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No Page</title>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Landing</a> |
+        <a href="yes.html">Yes</a> |
+        <a href="no.html">No</a>
+    </nav>
+    <h1>Words You Said No To</h1>
+    <ul id="noList"></ul>
+
+    <script>
+        // Retrieve and display words user clicked 'No' for
+        var noList = localStorage.getItem('noList');
+        if (noList) {
+            document.getElementById('noList').innerHTML = noList;
+        }
+    </script>
+</body>
+</html>
